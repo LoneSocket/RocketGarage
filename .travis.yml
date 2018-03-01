@@ -6,8 +6,8 @@ env:
    - ADB_INSTALL_TIMEOUT=10 # minutes (2 minutes by default)
 android:
   components:
-    - build-tools-26.0.2
-    - android-26
+    - build-tools-27.0.3
+    - android-27
     - android-21
     - sys-img-armeabi-v7a-android-21
 before_script:

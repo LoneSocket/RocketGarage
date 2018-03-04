@@ -1,13 +1,20 @@
+plugins {
+    id "org.sonarqube" version "2.6"
+}
+
 apply plugin: 'com.android.application'
+
+def ApplicationId = "fr.lonesocket.garage.app"
+def ApplicationVersion = "0.1"
 
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "fr.lonesocket.garage.app"
+        applicationId ApplicationId
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName ApplicationVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,4 +35,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "RocketGarage"
+        property "sonar.projectKey", ApplicationId
+        property "sonar.projectVersion", ApplicationVersion
+    }
 }

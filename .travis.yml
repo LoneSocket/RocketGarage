@@ -1,21 +1,21 @@
 language: android
 before_install:
-  - yes | sdkmanager "platforms;android-27"
-  - chmod +x gradlew
+- yes | sdkmanager "platforms;android-27"
+- chmod +x gradlew
 env:
   global:
-   - ADB_INSTALL_TIMEOUT=10 # minutes (2 minutes by default)
+  - ADB_INSTALL_TIMEOUT=10
 android:
   components:
-    - build-tools-27.0.3
-    - android-27
-    - android-21
-    - sys-img-armeabi-v7a-android-21
+  - build-tools-27.0.3
+  - android-27
+  - android-21
+  - sys-img-armeabi-v7a-android-21
 before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+- emulator -avd test -no-skin -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 addons:
   sonarcloud:
     organization: lonesocket-github
@@ -25,4 +25,7 @@ addons:
     token:
       secure: XJ3jSsqb29XwUtRw0nTkOpQq1OjifOv8aFVN7gTcIRdQp/HAmKS7ee8CPTYnoj5KoSvatpiD7YcBVtgiImqC9M6fPDkYfmGz6aJqTt+TXnntqwV7UvT177TPy8JyDH3QnD7Hao9d2+QP+jFOnc9i0Gb4Wss3dGlGbJVh7K5hOb2nkkYldTpkRWDIYINX6YNb913zikyIJDrJh4pqpoQdbRp3wiYAfSwOdKRea1Q+LV+ozFDy6uKVYoYBjRijZE+0J7zdnop3ivCEiTjEGR1PmNUGX8OEAUBql7+GtzUrdfQgtxnkt6zyMfavK6BNDk0J73mXimyYbiVb0+aQY61jm4TjaW+7v1jH0Opvn5TNK9BkUsdbAAgg6XRqX72z6Dl5N7pa/jyb2XX1YcneHn3GsZic7eQnZsgvCTzDUU50m8tZWByeQgwV9vD1A09mmbL+0x3QxGe+Ku0CRf7+1+YUNZtldhGj4dAGgu0NiNjpCc+Rfv342YZt7MJ+9l5TDyYGDHGJU2g7qHUkspjrHp1saQU/yDU3CKdQlQzLItMVhgpsOzcUnac/qYsFfzQAiNvhxgfbYlnVIkAzRDwp6DwFm0TOwr3pGddlFlRelDz676aTfYvPcYgjPemELEduE/q3AVxglNH3mq8Q4kxHLITmVkEK/I1zNKRweNb4MMoWWZQ=
 script:
-  - "./gradlew sonarqube"
+- "./gradlew sonarqube"
+notifications:
+  slack:
+    secure: XevhPSxOkQ4PCqoXPmHY8czOGKLhvhe0nMd0Lx41yXflXsdWPcooMzDdb54RG/QVodU1W3lF5SI/8pF0yIBX6bx2++Y4RfM83AljzXznvOtdM5WgPWfY4qhYi8sjEcK+Rpd2CMKzecVnctHmGFvhYExFgMCDULBT1T3XDXZwOA+aQ/BFdOSD6F6WA5I2u4M3wEmIT2GUsigOwmxfTqvvZ09cjyiS282B4uYxFZL8c1tXJTH83cBJk8TQyM8zKqqrQTq3Zb/efKtrmoeY6ciaTb4jHK5sCXStbBGriPyY9SoY1uDEiyxq3SvXX1KOSSe+12qFOkpgUjmGr5shO4ekDXtcC6ey3BC7/tjor9H0+5r2Pm/zlREA0vAVxhlWM/yYNkEAHkHkk79d3vHuPgNsqaJ88DlaQ4/FVbDgM9xWuBMoCb/vzKOTorCNFG9xJr5vyULgizYPDjQou/ZdNHOO9/1z+/PnicvNRXyH1hKukuP4eNbgHpsb8Ug9yLMrmz6h/vIUhSsTV/Q5Lxd6BkGmOFymW2ZwT+tvB3hg0TLD4ZrVMPn+a5KxbVdZrF+o06fd2T1mYWjzKxoWwvBThzr8Hg3l+dMWnQyH4ptBqgMgtw12rSaYlPbaB6lTzMEUFKjQ3XwnJP/AeZbALMJiIp33LLlZ3p0NF5p+XJw2Dezolgc=
